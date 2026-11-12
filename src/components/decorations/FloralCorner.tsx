@@ -10,7 +10,7 @@ type FloralCornerProps = {
 
 export function FloralCorner({ className, variant = 'blush' }: FloralCornerProps) {
   const primary = variant === 'blush' ? 'blush' : 'cream'
-  const secondary = variant === 'blush' ? 'champagne' : 'beige'
+  const secondary = variant === 'blush' ? 'champagne' : 'cream'
 
   return (
     <div className={`pointer-events-none relative h-full w-full ${className ?? ''}`}>
@@ -31,7 +31,7 @@ export function FloralCorner({ className, variant = 'blush' }: FloralCornerProps
       />
       <Flower
         className="absolute left-[34%] top-[26%] w-[42%]"
-        palette={variant === 'blush' ? 'cream' : 'beige'}
+        palette="cream"
       />
       <Rose
         className="absolute left-[-2%] top-[40%] w-[34%] rotate-[12deg]"
