@@ -49,8 +49,7 @@ function PetalRing({ count, scale, distance, spin, fill, opacity, d }: RingProps
 
 export function Rose({ className, palette = 'blush' }: RoseProps) {
   const id = `rose-${useId().replace(/[^a-zA-Z0-9]/g, '')}`
-  const colors = rosePalettes[palette]
-
+const colors = rosePalettes[palette] ?? rosePalettes.blush
   return (
     <svg viewBox="0 0 120 120" className={className} aria-hidden="true">
       <defs>
