@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+@theme {
+  --font-script: "Great Vibes", cursive;
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --color-ivory: #faf6ef;
+  --color-ink: #3c291c;
+  --color-gold: #a68446;
+}
+
+html {
+  color-scheme: light;
+  background: #faf6ef;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background: #faf6ef;
+  color: #3c291c;
+  font-family: var(--font-serif);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100dvh;
+}
+
+.invitation-paper {
+  background-color: #f7f1e6;
+  background-image:
+    radial-gradient(ellipse at 18% 0%, rgba(255, 252, 247, 0.95), transparent 48%),
+    radial-gradient(ellipse at 100% 100%, rgba(214, 184, 140, 0.2), transparent 42%),
+    radial-gradient(ellipse at 0% 80%, rgba(232, 206, 196, 0.16), transparent 36%),
+    radial-gradient(ellipse at 50% 42%, rgba(255, 255, 255, 0.42), transparent 58%),
+    repeating-linear-gradient(
+      0deg,
+      rgba(92, 64, 32, 0.02) 0 1px,
+      transparent 1px 3px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(92, 64, 32, 0.015) 0 1px,
+      transparent 1px 4px
+    );
+}
+
+.ornament-spin {
+  animation: ornament-spin 90s linear infinite;
+  transform-origin: center;
+}
+
+.float-particle {
+  animation: float-particle var(--dur) ease-in-out var(--delay) infinite;
+}
+
+.spark-twinkle {
+  animation: spark-twinkle var(--dur) ease-in-out var(--delay) infinite;
+}
+
+.ribbon {
+  position: absolute;
+  display: block;
+  transform-origin: center;
+  border-radius: 1px;
+  box-shadow: 0 8px 14px rgba(90, 58, 28, 0.08);
+  animation-timing-function: cubic-bezier(0.18, 0.62, 0.28, 1);
+  animation-fill-mode: forwards;
+  animation-duration: var(--dur);
+  animation-delay: var(--delay);
+  background: var(--c);
+  width: var(--w);
+  height: var(--h);
+}
+
+.ribbon-top {
+  top: -28vh;
+  left: var(--pos);
+  animation-name: ribbon-fall;
+}
+
+.ribbon-left,
+.ribbon-right {
+  top: var(--pos);
+  animation-name: ribbon-side;
+}
+
+.ribbon-left {
+  left: -28vw;
+}
+
+.ribbon-right {
+  right: -28vw;
+  left: auto;
+}
+
+@keyframes ornament-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes float-particle {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(var(--drift), -22px, 0) rotate(var(--tilt));
+  }
+}
+
+@keyframes spark-twinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.85) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15) rotate(12deg);
+  }
+}
+
+@keyframes ribbon-fall {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -6vh, 0) rotate(var(--spin));
+  }
+  12% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--drift), 118vh, 0)
+      rotate(calc(var(--spin) + var(--turn)));
+  }
+}
+
+@keyframes ribbon-side {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) rotate(var(--spin));
+  }
+  14% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--drift), 78vh, 0)
+      rotate(calc(var(--spin) + var(--turn)));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ornament-spin,
+  .float-particle,
+  .spark-twinkle,
+  .ribbon {
+    animation: none;
+  }
+}
